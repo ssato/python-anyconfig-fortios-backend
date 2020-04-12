@@ -1,0 +1,54 @@
+#conf_file_ver=123456789012345
+#buildno=1234
+#global_vdom=1
+
+config vdom
+edit root
+next
+edit ro
+next
+edit admin
+next
+edit management
+next
+end
+
+config global
+config system global
+    set admintimeout 30
+    set hostname "fortigate-10"
+    set switch-controller enable
+    set timezone 60
+    set vdom-admin enable
+end
+end
+
+config vdom
+edit root
+config system settings
+    set gui-threat-weight disable
+    set gui-application-control disable
+    set gui-endpoint-control disable
+    set gui-vpn disable
+    set gui-wireless-controller disable
+    set gui-switch-controller disable
+    set gui-wan-load-balancing disable
+    set gui-antivirus disable
+    set gui-webfilter disable
+    set gui-dnsfilter disable
+end
+config firewall address
+    edit "admin-1"
+        set uuid 97d454d6-6e63-486b-9021-3b83caf1e964
+        set visibility disable
+    next
+    edit "management-1"
+        set uuid b3ea8fbf-0c31-4063-b3bc-ceabf24d6bc7
+        set subnet 192.168.122.0 255.255.255.0
+    next
+end
+config router static6
+    edit 1
+    next
+end
+end

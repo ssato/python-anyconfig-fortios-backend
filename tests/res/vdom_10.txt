@@ -1,0 +1,8 @@
+config vdom
+edit root
+next
+edit management
+next
+edit storage
+next
+end

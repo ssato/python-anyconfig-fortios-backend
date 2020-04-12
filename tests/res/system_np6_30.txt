@@ -1,0 +1,33 @@
+config system np6
+    edit "np6_0"
+        set fastpath enable
+        set per-session-accounting enable-by-log
+        set session-timeout-random-range 8
+        set session-timeout-fixed disable
+        config fp-anomaly-v4
+            set tcp-syn-fin allow
+            set tcp-fin-noack trap-to-host
+            set ipv4-opttimestamp trap-to-host
+        end
+        config fp-anomaly-v6
+            set ipv6-land trap-to-host
+            set ipv6-optendpid trap-to-host
+            set ipv6-optinvld trap-to-host
+        end
+    next
+    edit "np6_1"
+        set fastpath enable
+        set per-session-accounting enable-by-log
+        set session-timeout-random-range 8
+        set session-timeout-fixed disable
+        config fp-anomaly-v4
+            set tcp-syn-fin allow
+            set tcp-fin-noack trap-to-host
+            set ipv4-opttimestamp trap-to-host
+        end
+        config fp-anomaly-v6
+            set ipv6-land trap-to-host
+            set ipv6-optinvld trap-to-host
+        end
+    next
+end

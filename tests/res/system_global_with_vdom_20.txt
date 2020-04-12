@@ -1,0 +1,22 @@
+# https://help.fortinet.com/cli/fos60hlp/60/Content/FortiOS/fortiOS-cli-ref/config/system/global.htm
+# (Some parts are omitted.)
+#global_vdom=1
+config vdom
+edit root
+next
+edit management
+next
+edit storage
+next
+end
+
+config global
+config system global
+    set hostname "fortios-001"
+    set management-vdom "management"
+    set switch-controller enable
+    set timezone 60
+    set vdom-admin enable
+    set vdom-mode multi-vdom
+end
+end

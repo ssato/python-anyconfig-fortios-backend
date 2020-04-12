@@ -1,0 +1,32 @@
+config firewall service category
+    edit "General"
+        set comment "general services"
+    next
+    edit "Web Access"
+        set comment "web access"
+    next
+    edit "File Access"
+        set comment "file access"
+    next
+    edit "Email"
+        set comment "email services"
+    next
+    edit "Network Services"
+        set comment "network services"
+    next
+    edit "Authentication"
+        set comment "authentication service"
+    next
+    edit "Remote Access"
+        set comment "remote access"
+    next
+    edit "Tunneling"
+        set comment "tunneling service"
+    next
+    edit "VoIP, Messaging & Other Applications"
+        set comment "VoIP, messaging, and other applications"
+    next
+    edit "Web Proxy"
+        set comment "Explicit web proxy"
+    next
+end

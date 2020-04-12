@@ -1,0 +1,22 @@
+* Sun Apr 12 2020 ssato - 0.1.5-1
+- fix: handle cases if 'edit' section ends without 'next' end marker correctly
+- fix: skip test cases if those reference data are missing
+
+* Sun Apr 12 2020 ssato - 0.1.4-1
+- fix: make sure to yield the rest of configs even if the end marker ('next' for 'edit', 'end' for 'config')
+- fix: add missing test case that configuration contains multi vdoms and edit section without next, and expected result
+- fix: correct some test cases and test resource data
+
+* Fri Apr 10 2020 ssato - 0.1.3-1
+- fix: support parsing VDom and not-correctly-indented configurations
+
+* Wed Mar 18 2020 ssato - 0.1.2-1
+- fix: use collections.OrderedDict instead of dict to keep order of items
+
+* Tue Mar 17 2020 ssato - 0.1.1-1
+- fix: wrong runtime dependency
+- fix: wrong class inheritance hierarchy
+- fix: remove unused imports
+
+* Mon Mar 16 2020 ssato - 0.1.0-1
+- initial release

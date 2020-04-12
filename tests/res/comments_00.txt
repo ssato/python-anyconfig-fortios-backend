@@ -1,0 +1,4 @@
+#config-version=FG1K5D-5.01-FW-build1999-123456:opmode=1:vdom=0:user=admin
+#conf_file_ver=123456789012345
+#buildno=2020
+#global_vdom=1

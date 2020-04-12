@@ -1,0 +1,11 @@
+# https://help.fortinet.com/cli/fos60hlp/60/Content/FortiOS/fortiOS-cli-ref/config/system/global.htm
+# (Some parts are omitted.)
+config system global
+    set admin-concurrent enable
+    set admin-console-timeout 0
+    unset fgd-alert-subscription
+    set fortiextender disable
+    set gui-device-latitude ''
+    set gui-device-longitude ''
+    set fds-statistics-period 60
+end

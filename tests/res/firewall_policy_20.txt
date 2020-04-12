@@ -1,0 +1,37 @@
+#
+# .. seealso:: https://csps.hitachi-solutions.co.jp/fortinet/faq/FG-21-0054/
+# 
+config firewall policy
+    edit 2
+        set name "Sample Policy"
+        set uuid 66cd0f9e-30b2-454e-a11d-94ff4285bd46
+        set srcintf "lan"
+        set dstintf "wan1"
+        set srcaddr "NET_192.168.122.0" "NET_192.168.1.0"
+        set dstaddr "all"
+        set action accept
+        set status enable
+        set schedule "always"
+        set service "HTTP" "PING" "TRACEROUTE"
+        set session-ttl 600
+        set application-list "app-sample"
+        set ssl-ssh-profile "deep-inspection"
+        set nat enable
+    next
+    edit 3
+        set name "Sample Policy 3"
+        set uuid efa10f23-9614-4513-ac0a-4f10672bb2f9
+        set srcintf "lan"
+        set dstintf "wan1"
+        set srcaddr "HOST_192.168.122.1" "HOST_192.168.1.254"
+        set dstaddr "all"
+        set action accept
+        set status enable
+        set schedule "always"
+        set service "HTTP" "PING" "TRACEROUTE"
+        set session-ttl 600
+        set application-list "app-sample"
+        set ssl-ssh-profile "deep-inspection"
+        set nat enable
+    next
+end
