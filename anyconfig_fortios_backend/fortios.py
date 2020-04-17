@@ -7,9 +7,17 @@ r"""Very experimental parser parses fortios configuration.
 - Format to support: Fortios' "show *configuration" outputs
 - Requirements: None
 - Development Status :: 4 - Beta
-- Limitations: It should have some
+- Limitations:
+
+  - Load function only and it doesn't support dump function
+  - It should have some more I'm not aware of
 
 Chnagelog:
+
+    .. versionchanged:: 0.1.5
+
+       Support multiple VDoms, workaround for corrupt outputs without correct
+       indents and edit section ends without 'next' end marker.
 
     .. versionadded:: 0.1.0
 """
