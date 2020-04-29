@@ -131,14 +131,14 @@ def _process_vals(vals):
     """
     :param vals: None or a single value in a list of a list
 
-    >>> _process_vals(None)
-    None
+    >>> _process_vals(None) is None
+    True
     >>> _process_vals([])
     []
     >>> _process_vals([0])
     0
     >>> _process_vals(["0", "1"])
-    ['1', '2']
+    ['0', '1']
     """
     if vals is None or not vals:
         return vals
