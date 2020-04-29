@@ -5,5 +5,5 @@ include README.*
 include pkg/*
 include setup.*
 include requirements.*
-recursive-include anyconfig_fortios_backend *.py
+recursive-include src *.py
 recursive-include tests *.py *.txt *.json
