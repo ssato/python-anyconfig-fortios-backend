@@ -40,10 +40,6 @@ SEE ALSO:
 
 - python-anyconfig: https://pypi.python.org/pypi/anyconfig
 - Fortinet: https://www.fortinet.com/
-- Download:
-
-  - PyPI: https://pypi.python.org/pypi/anyconfig-fortios-backend
-  - Copr RPM repos: https://copr.fedoraproject.org/coprs/ssato/python-anyconfig/
 
 Build & Install
 ================
