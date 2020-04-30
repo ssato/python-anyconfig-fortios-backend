@@ -1,3 +1,5 @@
+"""setup.py to build packages.
+"""
 from __future__ import absolute_import
 
 import glob
@@ -10,9 +12,10 @@ import setuptools.command.bdist_rpm
 VERSION = False
 for pyf in glob.glob("src/*/__init__.py"):
     matches = [m.groups() for m in (re.match(r'__version__ = "([0-9.]+)"', l)
-                                    for l in open(pyf).readlines()) if m]
+                                    for l in open(pyf)) if m]
     if matches:
         VERSION = matches[0][0]
+        break
 
 assert VERSION
 
@@ -37,6 +40,7 @@ def _replace(line):
     return line
 
 
+# pylint: disable=invalid-name
 class bdist_rpm(setuptools.command.bdist_rpm.bdist_rpm):
     """Override the default content of the RPM SPEC.
     """
