@@ -3,5 +3,5 @@
 from __future__ import absolute_import
 from .fortios import Parser
 
-__version__ = "0.1.6"
+__version__ = "0.1.7"
 __all__ = ["Parser"]

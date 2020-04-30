@@ -1,3 +1,7 @@
+* Fri May  1 2020 ssato - 0.1.7-1
+- fix: merge fixes and enhancements of MANIFEST.in, setup.py and tox.ini from
+  python-anyconfig-bson-backend
+
 * Sun Apr 12 2020 ssato - 0.1.5-1
 - fix: handle cases if 'edit' section ends without 'next' end marker correctly
 - fix: skip test cases if those reference data are missing

@@ -75,6 +75,9 @@ Requires:       python3-anyconfig
 %{python3_sitelib}/*
 
 %changelog
+* Fri May  1 2020 Satoru SATOH <satoru.satoh@gmail.com> - 0.1.7-1
+- New upstream
+
 * Thu Apr 30 2020 Satoru SATOH <satoru.satoh@gmail.com> - 0.1.6-1
 - New upstream
 
