@@ -14,9 +14,13 @@ python-anyconfig-fortios-backend
    :target: https://pypi.python.org/pypi/anyconfig-fortios-backend/
    :alt: MIT License
 
+.. image:: https://github.com/ssato/python-anyconfig-fortios-backend/workflows/Tests/badge.svg
+   :target: https://github.com/ssato/python-anyconfig-fortios-backend/actions?query=workflow%3ATests
+   :alt: GitHub Actions Test status
+
 .. image:: https://img.shields.io/travis/ssato/python-anyconfig-fortios-backend.svg
    :target: https://travis-ci.org/ssato/python-anyconfig-fortios-backend
-   :alt: Test status
+   :alt: Travis-CI Test status
 
 .. .. image:: https://img.shields.io/coveralls/ssato/python-anyconfig-fortios-backend.svg
    :target: https://coveralls.io/r/ssato/python-anyconfig-fortios-backend
