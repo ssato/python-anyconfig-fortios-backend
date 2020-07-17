@@ -8,6 +8,7 @@ from __future__ import absolute_import
 import glob
 import os.path
 import os
+import shutil
 import tempfile
 
 
@@ -42,7 +43,8 @@ def cleanup_workdir(workdir):
     >>> workdir = setup_workdir()
     >>> os.path.exists(workdir)
     True
-    >>> open(os.path.join(workdir, "workdir.stamp"), 'w').write("OK!" + lsep)
+    >>> _ = open(os.path.join(workdir, "workdir.stamp"), 'w'
+    ...          ).write("OK!" + lsep)
     >>> cleanup_workdir(workdir)
     >>> os.path.exists(workdir)
     False
@@ -50,6 +52,6 @@ def cleanup_workdir(workdir):
     assert workdir != '/'
     assert workdir != '.'
 
-    os.system("rm -rf " + workdir)
+    shutil.rmtree(workdir)
 
 # vim:sw=4:ts=4:et:
