@@ -3,53 +3,51 @@
 # SPDX-License-Identifier: MIT
 #
 # pylint: disable=missing-docstring,invalid-name,too-few-public-methods
-from __future__ import absolute_import
-
-import glob
-import os.path
+import pathlib
+import tempfile
 import unittest
 
 import anyconfig
 import anyconfig.ioinfo
 import anyconfig_fortios_backend as TT
 import anyconfig_fortios_backend.fortios as F
-import tests.common as TBC
 
 
-_CNF_FILES = sorted(glob.glob(os.path.join(TBC.selfdir(), "res/*.txt")))
+_CNF_FILES = sorted(
+    str(p) for p in (pathlib.Path(__file__).parent / 'res').glob('*.txt')
+)
 
 
 class Test_10(unittest.TestCase):
 
     maxDiff = None
 
-    def setUp(self):
-        self.workdir = TBC.setup_workdir()
-        self.psr = TT.Parser()
-
-    def tearDown(self):
-        TBC.cleanup_workdir(self.workdir)
-
     def test_load(self):
-        self.assertTrue(_CNF_FILES)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workdir = pathlib.Path(temp_dir)
 
-        for in_path in _CNF_FILES:
-            exp_path = in_path.replace(".txt", ".json")
-            out_path = os.path.join(self.workdir, "out.json")
+            self.assertTrue(_CNF_FILES)
 
-            if not os.path.exists(exp_path):
-                continue  # The reference test data is not ready.
+            for in_path in _CNF_FILES:
+                exp_path = in_path.replace('.txt', '.json')
+                out_path = workdir / 'out.json'
 
-            try:
-                cnf = self.psr.load(anyconfig.ioinfo.make(in_path),
-                                    ac_ordered=True)
-                self.assertTrue(cnf)
-                self.assertTrue(isinstance(cnf, F.DEF_DICT))
+                if not out_path.exists():
+                    continue  # The reference test data is not ready.
 
-                anyconfig.dump(cnf, out_path)
-                self.assertEqual(anyconfig.load(out_path, ac_ordered=False),
-                                 anyconfig.load(exp_path, ac_ordered=False))
-            except AssertionError as exc:
-                raise AssertionError("file: {}, exc={!s}".format(in_path, exc))
+                try:
+                    psr = TT.Parser()
+                    cnf = psr.load(anyconfig.ioinfo.make(in_path),
+                                   ac_ordered=True)
+                    self.assertTrue(cnf)
+                    self.assertTrue(isinstance(cnf, F.DEF_DICT))
+
+                    anyconfig.dump(cnf, out_path)
+                    self.assertEqual(
+                        anyconfig.load(out_path, ac_ordered=False),
+                        anyconfig.load(exp_path, ac_ordered=False)
+                    )
+                except AssertionError as exc:
+                    raise AssertionError(f'file: {in_path}, exc={exc!s}')
 
 # vim:sw=4:ts=4:et:

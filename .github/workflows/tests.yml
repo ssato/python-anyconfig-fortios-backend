@@ -5,13 +5,14 @@ name: Tests
 # yamllint disable-line rule:truthy
 on:
   - push
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
       matrix:
-        python-version: [3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
       - uses: actions/checkout@v1
@@ -25,5 +26,7 @@ jobs:
           pip install tox tox-gh-actions
       - name: Test with tox
         run: tox
+        env:
+          PLATFORM: ${{ matrix.platform }}
 
 # vim:sw=2:ts=2:et:

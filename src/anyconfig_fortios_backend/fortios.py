@@ -21,17 +21,14 @@ Chnagelog:
 
     .. versionadded:: 0.1.0
 """
-from __future__ import absolute_import
-
 import collections
 import itertools
 import re
 
-import anyconfig.compat
 import anyconfig.backend.base
 
 
-DEF_DICT = anyconfig.compat.OrderedDict
+DEF_DICT = collections.OrderedDict
 
 EMPTY_RE = re.compile(r"^\s+$")
 COMMENT_RE = re.compile(r"^\s*#(.*)$")

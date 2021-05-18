@@ -8,4 +8,4 @@ include setup.*
 include tox.ini
 include tests/res/*
 recursive-include src *.py
-recursive-include tests *.py *.bats *.txt
+recursive-include tests *.py *.json *.txt
