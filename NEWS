@@ -1,3 +1,11 @@
+* Thu Aug 26 2021 ssato - 0.2.0-1
+- fix/change: follow changes in anyconfig
+- change: drop py2 support
+- change: remove Travis-CI configuration
+- enhancement: [gha] parameterize platform
+- enhancement: add a badge of Github Actions test status
+- fix/change: switch to pytest from nose
+
 * Fri May  1 2020 ssato - 0.1.7-1
 - fix: merge fixes and enhancements of MANIFEST.in, setup.py and tox.ini from
   python-anyconfig-bson-backend
