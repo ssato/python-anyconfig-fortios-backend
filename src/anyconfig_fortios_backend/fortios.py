@@ -86,8 +86,7 @@ def process_set_or_unset_line(matched, container=DEF_DICT):
     """
     matches = [m for m in matched.groups() if m is not None]
     if len(matches) < 2:
-        msg = "line: {}, matches: {}".format(matched.string,
-                                             ", ".join(matches))
+        msg = f"line: {matched.string}, matches: {', '.join(matches)}"
         raise ValueError(msg)
 
     if len(matches) == 2:  # ex. unset ssd-trim-weekday
