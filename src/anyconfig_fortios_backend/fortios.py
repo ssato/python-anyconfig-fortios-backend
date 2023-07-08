@@ -239,7 +239,7 @@ def parse_show_config_itr(stream, container=DEF_DICT, verbose=False):
     :param verbose: return verbose result if True
     """
     configs = []  # stack holds nested config objects
-    ntdopts = dict(verbose=verbose, container=container)
+    ntdopts = {"verbose": verbose, "container": container}
 
     # A mapping object holds comments; There are not so many comments.
     comments = container(comments=[])
