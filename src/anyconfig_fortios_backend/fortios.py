@@ -53,7 +53,7 @@ EDIT_START_RE = re.compile(r"^(\s*)"
                            r"$")
 EDIT_END_RE = re.compile(r"^\s*next$")
 
-SET_OR_UNSET_LINE_RE = re.compile(r"^\s+"
+SET_OR_UNSET_LINE_RE = re.compile(r"^\s*"
                                   r"(set|unset)\s+"
                                   r"(\S+)\s*"
                                   r"(.+)*$")
