@@ -1,0 +1,7 @@
+config foo
+  edit 123
+    set comments "multi line
+text which does not parse
+correctly"
+  next
+end
