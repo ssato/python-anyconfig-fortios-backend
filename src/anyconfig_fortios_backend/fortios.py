@@ -186,6 +186,58 @@ def _process_comment(content, container=DEF_DICT):
     return container(kv.split('=') for kv in content.split(':'))
 
 
+# Examples:
+# - '  set foo "bar" "baz
+#                     bar" '                     '
+SET_MULTILINE_VALUE_START_RE = re.compile(
+    r"^\s*"
+    r"set\s+"     # set
+    r"(\S+)\s+"   # variable name
+    r"((?:\S+\s+)*)"  # values in this line
+    r'"([^"]+)$'  # multiline value starts
+)
+
+
+def _process_set_with_multiline_value_start(line, container=DEF_DICT):
+    """
+    Parse a line text and return set value if it is the start line of set with
+    multline text values.
+
+    :param line: A str represents a content
+    :param container: object to hold results
+
+    :return: a set value object or None if it's not
+    """
+    matched = SET_MULTILINE_VALUE_START_RE.match(line)
+    if matched is None:
+        return None
+
+    (var, vals, ml_val_0) = matched.groups()
+    vals = re.findall(r'\s*("[^"]+"|\S+)\s*', vals) if vals else []
+    vals = [re.sub(r'^"|"$', '', v) for v in vals]  # strip quotes.
+
+    return container(type="set", name=var, values=vals + [ml_val_0])
+
+
+SET_MULTILINE_VALUE_END_RE = re.compile(
+    r'^([^"]*)"'
+)
+
+
+def _process_set_multiline_value_end(line):
+    """
+    Parse a line text and return set value if it is the end line of the
+    multline text values for set.
+
+    :param line: A str represents a content
+    :param container: object to hold results
+
+    :return: the last set value of multiline text or None or if it's not
+    """
+    matched = SET_MULTILINE_VALUE_END_RE.match(line)
+    return matched.groups()[0] if matched else None
+
+
 def is_config_or_edit_end(line, configs):
     """
     Is the line indicates that 'config' or 'edit' section ends?
@@ -244,8 +296,20 @@ def parse_show_config_itr(stream, container=DEF_DICT, verbose=False):
     # A mapping object holds comments; There are not so many comments.
     comments = container(comments=[])
 
+    # A flag for multiline (set) values.
+    in_multline_value = False
+
     for line in stream:
         if EMPTY_RE.match(line):
+            continue
+
+        if in_multline_value:
+            maybe_val = _process_set_multiline_value_end(line)
+            if maybe_val is None:
+                configs[-1].children[-1]["values"][-1] += line
+            else:
+                configs[-1].children[-1]["values"][-1] += maybe_val
+                in_multline_value = False
             continue
 
         matched = COMMENT_RE.match(line)
@@ -269,6 +333,14 @@ def parse_show_config_itr(stream, container=DEF_DICT, verbose=False):
         if matched:
             edit = make_node(matched, type_=NT_EDIT)
             configs.append(edit)  # push this edit.
+            continue
+
+        maybe_set_val = _process_set_with_multiline_value_start(
+            line, container=DEF_DICT
+        )
+        if maybe_set_val:
+            in_multline_value = True
+            configs[-1].children.append(maybe_set_val)
             continue
 
         matched = SET_OR_UNSET_LINE_RE.match(line)
