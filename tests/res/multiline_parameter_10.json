@@ -1,0 +1,1 @@
+{"configs": [{"config": "foo", "edits": [{"edit": "123", "comments": "multi line\ntext which does not parse\ncorrectly"}]}]}
