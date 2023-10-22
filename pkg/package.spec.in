@@ -17,6 +17,10 @@ License:        MIT
 URL:            https://github.com/ssato/python-anyconfig-fortios-backend
 Source0:        %{pkgname}-%{version}.tar.gz
 BuildArch:      noarch
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+
+%description %{desctxt}
 
 %package     -n python3-%{pkgname}
 Summary:        %{summary}
