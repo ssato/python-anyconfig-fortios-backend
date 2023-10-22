@@ -8,12 +8,6 @@ This is a backend module for python-anyconfig to load fortios \
 python-anyconfig is a python library to provide common APIs to load and dump\
 various configuration files like INI, JSON and YAML.
 
-%if 0%{?fedora} || 0%{?rhel} > 7
-%bcond_without python2
-%else
-%bcond_with python2
-%endif
-
 Name:           python-%{pkgname}
 Version:        @VERSION@
 Release:        @RELEASE@%{?dist}
@@ -23,24 +17,6 @@ License:        MIT
 URL:            https://github.com/ssato/python-anyconfig-fortios-backend
 Source0:        %{pkgname}-%{version}.tar.gz
 BuildArch:      noarch
-
-%if %{with python2}
-BuildRequires:  python2-devel
-BuildRequires:  python2-setuptools
-%endif
-BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
-
-%description %{desctxt}
-
-%if %{with python2}
-%package     -n python2-%{pkgname}
-Summary:        %{summary}
-Requires:       python2-anyconfig
-%{?python_provide:%python_provide python2-%{pkgname}}
-
-%description -n python2-%{pkgname} %{desctxt}
-%endif
 
 %package     -n python3-%{pkgname}
 Summary:        %{summary}
@@ -53,28 +29,20 @@ Requires:       python3-anyconfig
 %autosetup   -n %{pkgname}-%{version}
 
 %build
-%if %{with python2}
-%py2_build
-%endif
 %py3_build
 
 %install
-%if %{with python2}
-%py2_install
-%endif
 %py3_install
-
-%if %{with python2}
-%files       -n python2-%{pkgname}
-%doc README.rst
-%{python2_sitelib}/*
-%endif
 
 %files       -n python3-%{pkgname}
 %doc README.rst
 %{python3_sitelib}/*
 
 %changelog
+* Sun Oct 22 2023 Satoru SATOH <satoru.satoh@gmail.com> - 0.2.1-1
+- New upstream
+- drop py2 support
+
 * Fri May  1 2020 Satoru SATOH <satoru.satoh@gmail.com> - 0.1.7-1
 - New upstream
 
