@@ -10,39 +10,9 @@ import anyconfig
 import anyconfig.ioinfo
 
 import anyconfig_fortios_backend as TT
-import anyconfig_fortios_backend.fortios as F
+import anyconfig_fortios_backend.parser as P
 
 import tests.constants
-
-
-@pytest.mark.parametrize(
-    ("line", "exp"),
-    (("", None),
-     ('set service "HTTP" "PING" "TRACEROUTE""\n', None),
-     ('set foo "bar\n',
-      {"type": "set", "name": "foo", "values": ["bar\n"]}),
-     ('set foo "bar baz \n',
-      {"type": "set", "name": "foo", "values": ["bar baz \n"]}),
-     ('   set foo "bar" "baz\n',
-      {"type": "set", "name": "foo", "values": ["bar", "baz\n"]}
-      ),
-     ),
-)
-def test__process_set_multiline_value_start(line, exp):
-    res = F._process_set_with_multiline_value_start(line, container=dict)
-    assert res == exp
-
-
-@pytest.mark.parametrize(
-    ("line", "exp"),
-    (("", None),
-     ('"\n', ''),
-     ('foo "\n', 'foo '),
-     ),
-)
-def test__process_set_multiline_value_end(line, exp):
-    res = F._process_set_multiline_value_end(line)
-    assert res == exp
 
 
 _CNF_FILES = [str(p) for p in tests.constants.CNF_FILES]
@@ -64,7 +34,7 @@ def test_load(ipath, epath, tmp_path):
     try:
         cnf = TT.Parser().load(anyconfig.ioinfo.make(ipath), ac_ordered=True)
         assert cnf
-        assert isinstance(cnf, F.DEF_DICT)
+        assert isinstance(cnf, P.DEF_DICT)
 
         anyconfig.dump(cnf, out_path)
 
@@ -75,5 +45,3 @@ def test_load(ipath, epath, tmp_path):
 
     except AssertionError as exc:
         raise AssertionError(f'file: {ipath}, exc={exc!s}') from exc
-
-# vim:sw=4:ts=4:et:
