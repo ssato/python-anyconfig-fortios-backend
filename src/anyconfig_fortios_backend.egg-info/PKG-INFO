@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: anyconfig-fortios-backend
+Version: 0.2.0
+Summary: Backend module for python-anyconfig to load fortios' "show configuration outputs"
+Home-page: https://github.com/ssato/python-anyconfig-fortios-backend
+Author: Satoru SATOH
+Author-email: satoru.satoh@gmail.com
+Maintainer: Satoru SATOH
+Maintainer-email: satoru.satoh@gmail.com
+License: MIT
+Project-URL: CI: Travis, https://travis-ci.org/ssato/python-anyconfig-fortios-backend
+Project-URL: Download, https://pypi.org/project/anyconfig-fortios-backend/
+Project-URL: Download RPMs, https://copr.fedoraproject.org/coprs/ssato/python-anyconfig/
+Project-URL: Bug Tracker, https://github.com/ssato/python-anyconfig-fortios-backend/issues
+Project-URL: Source, https://github.com/ssato/python-anyconfig-fortios-backend
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Markup
+Classifier: Topic :: Utilities
+Classifier: License :: OSI Approved :: MIT License
+License-File: LICENSE.MIT
+
+==================================
+python-anyconfig-fortios-backend
+==================================
+
+.. image:: https://img.shields.io/pypi/v/anyconfig-fortios-backend.svg
+   :target: https://pypi.python.org/pypi/anyconfig-fortios-backend/
+   :alt: [Latest Version]
+
+.. image:: https://img.shields.io/pypi/pyversions/anyconfig-fortios-backend.svg
+   :target: https://pypi.python.org/pypi/anyconfig-fortios-backend/
+   :alt: [Python versions]
+
+.. image:: https://img.shields.io/pypi/l/anyconfig-fortios-backend.svg
+   :target: https://pypi.python.org/pypi/anyconfig-fortios-backend/
+   :alt: MIT License
+
+.. image:: https://github.com/ssato/python-anyconfig-fortios-backend/workflows/Tests/badge.svg
+   :target: https://github.com/ssato/python-anyconfig-fortios-backend/actions?query=workflow%3ATests
+   :alt: [Github Actions: Test status]
+
+.. .. image:: https://img.shields.io/coveralls/ssato/python-anyconfig-fortios-backend.svg
+   :target: https://coveralls.io/r/ssato/python-anyconfig-fortios-backend
+   :alt: Coverage Status
+
+.. image:: https://img.shields.io/lgtm/alerts/g/ssato/python-anyconfig-fortios-backend.svg
+   :target: https://lgtm.com/projects/g/ssato/python-anyconfig-fortios-backend/alerts/
+   :alt: [Total Alerts by LGTM]
+
+.. image:: https://img.shields.io/lgtm/grade/python/g/ssato/python-anyconfig-fortios-backend.svg
+   :target: https://lgtm.com/projects/g/ssato/python-anyconfig-fortios-backend/context:python
+   :alt: [Code Quality by LGTM]
+
+This is a backend module for python-anyconfig to support to load and parse
+fortios' "show \*configuration" outputs.
+
+- Author: Satoru SATOH <satoru.satoh@gmail.com>
+- License: MIT
+
+SEE ALSO:
+
+- python-anyconfig: https://pypi.python.org/pypi/anyconfig
+- Fortinet: https://www.fortinet.com/
+
+Build & Install
+================
+
+If you're Fedora or Red Hat Enterprise Linux user, try::
+
+  $ python setup.py srpm && mock dist/<package>-<ver_dist>.src.rpm
+  
+or::
+
+  $ python setup.py rpm
+
+and install built RPMs. 
+
+Otherwise, try usual ways to build and/or install python modules such like
+'python setup.py bdist', etc.
+
+.. vim:sw=2:ts=2:et:
