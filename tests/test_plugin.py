@@ -1,32 +1,35 @@
 #
-# Copyright (C) 2020, 2021 Satoru SATOH <satoru.satoh@gmail.com>
+# Copyright (C) 2020 - 2024 Satoru SATOH <satoru.satoh @ gmail.com>
 # SPDX-License-Identifier: MIT
 #
 # pylint: disable=missing-docstring
 """Plugin test cases.
 """
 import anyconfig
+import pytest
 
 import tests.constants
 
 
-def _try_loads(files):
-    for filepath in files:
-        try:
-            cnf = anyconfig.load(filepath, ac_parser="fortios")
-            assert cnf
+def _try_loads(ipath, epath, ac_parser: str = "fortios"):
+    try:
+        cnf = anyconfig.load(ipath, ac_parser=ac_parser)
+        assert cnf
 
-            exp_path = str(filepath).replace(".txt", ".json")
-            ref = anyconfig.load(exp_path, ordered=True)
+        ref = anyconfig.load(epath, ordered=True)
 
-        except anyconfig.UnknownFileTypeError:
-            print("all types=%r" % anyconfig.list_types())
-            raise
+    except anyconfig.UnknownFileTypeError:
+        print(f"all types={anyconfig.list_types()}")
+        raise
 
-        assert cnf == ref
+    assert cnf == ref
 
 
-def test_load():
-    _try_loads(tests.constants.CNF_FILES)
-
-# vim:sw=4:ts=4:et:
+@pytest.mark.parametrize(
+    ("ipath", "epath"),
+    tests.constants.IPATH_EPATH_PAIRS,
+    ids=[p.name for p, _e in tests.constants.IPATH_EPATH_PAIRS],
+)
+def test_load(ipath, epath):
+    _try_loads(ipath, epath)
+    _try_loads(ipath, epath, ac_parser="fortios.builtin")

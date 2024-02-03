@@ -15,18 +15,10 @@ import anyconfig_fortios_backend.fortios.parser as P
 import tests.constants
 
 
-_CNF_FILES = [str(p) for p in tests.constants.CNF_FILES]
-_IPATH_EPATH_PAIRS = [
-    (p, p.parent / p.name.replace('.txt', '.json'))
-    for p in tests.constants.CNF_FILES
-]
-assert _IPATH_EPATH_PAIRS
-
-
 @pytest.mark.parametrize(
     ("ipath", "epath"),
-    _IPATH_EPATH_PAIRS,
-    ids=[p.name for p, _e in _IPATH_EPATH_PAIRS],
+    tests.constants.IPATH_EPATH_PAIRS,
+    ids=[p.name for p, _e in tests.constants.IPATH_EPATH_PAIRS],
 )
 def test_load(ipath, epath, tmp_path):
     out_path = tmp_path / 'out.json'
