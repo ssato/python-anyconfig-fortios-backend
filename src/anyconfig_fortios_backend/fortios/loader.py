@@ -2,11 +2,10 @@
 # Copyright (C) 2020 - 2024 Satoru SATOH <satoru.satoh @ gmail.com>.
 # SPDX-License-Identifier: MIT
 #
-r"""Loader fortios configuration files.
-"""
+"""Loader class to load fortios configuration files."""
 import anyconfig.backend.base
 
-from . import parser
+from . import base, parser
 
 
 def load(stream, container=parser.DEF_DICT):
@@ -28,15 +27,12 @@ def load(stream, container=parser.DEF_DICT):
     )
 
 
-class Loader(anyconfig.backend.base.FromStreamLoaderMixin):
+class Loader(base.Base, anyconfig.backend.base.FromStreamLoaderMixin):
     """
-    Loader for fortios (fortigate) "show *configuration" outputs.
+    Loader class to load fortios (fortigate) "show *configuration" outputs.
     """
-    _cid = "fortios.builtin"
-    _type = "fortios"
-    _extensions = []
+
     _load_opts = ["full"]
-    _ordered = True
 
     def load_from_stream(self, stream, container, **kwargs):
         """

@@ -3,15 +3,20 @@
 # SPDX-License-Identifier: MIT
 #
 """Very experimental dumpers for fortios configuration objects.
+
+.. note:: This is NOT implemented yet.
 """
 import anyconfig.backend.base
 
+from . import base
 
-class Dumper(anyconfig.backend.base.ToStreamDumperMixin):
+
+class Dumper(base.Base, anyconfig.backend.base.ToStreamDumperMixin):
     """
-    Dumper for fortios (fortigate) configuration object which is originally
-    load using the loader, anyconfig_fortios_backend.loader.Loader.
+    Dumper class to dump fortios (fortigate) configuration object which is
+    originally load using the loader, anyconfig_fortios_backend.loader.Loader.
     """
+
     def dump_to_stream(self, cnf, stream, **kwargs):
         """
         Dump config 'cnf' to a file or file-like object 'stream'.

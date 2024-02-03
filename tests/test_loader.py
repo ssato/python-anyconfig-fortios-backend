@@ -9,8 +9,8 @@ import pytest
 import anyconfig
 import anyconfig.ioinfo
 
-import anyconfig_fortios_backend as TT
-import anyconfig_fortios_backend.parser as P
+import anyconfig_fortios_backend.fortios.loader as TT
+import anyconfig_fortios_backend.fortios.parser as P
 
 import tests.constants
 
@@ -32,7 +32,7 @@ def test_load(ipath, epath, tmp_path):
     out_path = tmp_path / 'out.json'
 
     try:
-        cnf = TT.Parser().load(anyconfig.ioinfo.make(ipath), ac_ordered=True)
+        cnf = TT.Loader().load(anyconfig.ioinfo.make(ipath), ac_ordered=True)
         assert cnf
         assert isinstance(cnf, P.DEF_DICT)
 

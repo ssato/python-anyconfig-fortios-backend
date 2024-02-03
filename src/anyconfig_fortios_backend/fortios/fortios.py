@@ -25,13 +25,12 @@ Chnagelog:
 
     .. versionadded:: 0.1.0
 """
-import anyconfig.backend.base
-
 from . import dumper, loader
 
 
-class Parser(anyconfig.backend.base.Parser, loader.Loader, dumper.Dumper):
+class Parser(loader.Loader, dumper.Dumper):
     """
     Parser for fortios (fortigate) "show *configuration" outputs.
     """
+
     dump_to_stream = dumper.Dumper.dump_to_stream

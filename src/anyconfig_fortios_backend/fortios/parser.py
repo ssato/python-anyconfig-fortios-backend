@@ -2,12 +2,10 @@
 # Copyright (C) 2020 - 2024 Satoru SATOH <satoru.satoh@gmail.com>.
 # SPDX-License-Identifier: MIT
 #
-r"""Experimental parser parses fortios configuration.
-"""
+r"""Experimental parser parses fortios configuration."""
 import collections
 import itertools
 import re
-
 
 DEF_DICT = collections.OrderedDict
 
@@ -29,9 +27,7 @@ CONFIG_END_RE = re.compile(r"^\s*end$")
 # - '     edit "fortinet"'
 # - '            edit 1'
 EDIT_START_RE = re.compile(r"^(\s*)"
-                           r"edit\s+"
-                           + WORD_RE_S +
-                           r"$")
+                           r"edit\s+" + WORD_RE_S + r"$")
 EDIT_END_RE = re.compile(r"^\s*next$")
 
 SET_OR_UNSET_LINE_RE = re.compile(r"^\s*"
@@ -42,7 +38,8 @@ SET_VALUE_RE = re.compile(WORD_RE_S + r"\s*")
 
 
 def process_config_or_edit_line(matched):
-    """
+    """Process 'config ...' and 'edit ....' blocks.
+
     :param matched: :class:`re.Match` object holding the config line info
 
     :raises: ValueError
@@ -58,7 +55,8 @@ def process_config_or_edit_line(matched):
 
 
 def process_set_or_unset_line(matched, container=DEF_DICT):
-    """
+    """Process 'set ...' and 'unset' lines.
+
     :param matched: :class:`re.Match` object holding the '*set' line info
     :param container: Constructor to make mapping objects [OrderedDict]
 
@@ -83,7 +81,8 @@ def process_set_or_unset_line(matched, container=DEF_DICT):
 
 
 def make_node(matched, type_=None):
-    """
+    """Make node object from matched lines.
+
     :param matched: :class:`re.Match` object holding the config line info
     :param type_: Node type
 
@@ -105,7 +104,8 @@ EDIT_NAME = EDIT_TYPE = "edit"
 
 
 def _process_vals(vals):
-    """
+    """Process values.
+
     :param vals: None or a single value in a list of a list
 
     >>> _process_vals(None) is None
@@ -221,7 +221,7 @@ def _process_set_multiline_value_end(line):
 
 def is_config_or_edit_end(line, configs):
     """
-    Is the line indicates that 'config' or 'edit' section ends?
+    Detect if it is the line indicates that 'config' or 'edit' section ends.
 
     - config <name>
         ...
@@ -242,8 +242,8 @@ def is_config_or_edit_end(line, configs):
 
 def is_edit_end_without_next(line, configs):
     """
-    Is the line indicates that 'edit' section ends without 'next' end marker
-    (special case)?
+    Detect if it is the line indicates that 'edit' section ends without 'next'
+    end marker (special case).
 
     - config vdom
       edit <name>

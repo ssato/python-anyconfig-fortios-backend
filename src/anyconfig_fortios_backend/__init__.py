@@ -1,6 +1,10 @@
-"""anyconfig backend to load and parse fortios' "show *configuration" outputs.
+"""Loader and dumper backend to load from and dump to fortios' "show
+*configuration" outputs.
+
+.. note:: dumper is NOT implemented yet actually.
 """
-from .fortios import Parser
+from .fortios.fortios import Parser
+from .fortios.loader import Loader
 
 __version__ = "0.2.0"
-__all__ = ["Parser"]
+__all__ = ["Parser", "Loader"]

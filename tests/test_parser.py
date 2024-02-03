@@ -6,7 +6,7 @@
 # pylint: disable=protected-access
 import pytest
 
-import anyconfig_fortios_backend.parser as TT
+import anyconfig_fortios_backend.fortios.parser as TT
 
 
 @pytest.mark.parametrize(
