@@ -22,14 +22,6 @@ python-anyconfig-fortios-backend
    :target: https://coveralls.io/r/ssato/python-anyconfig-fortios-backend
    :alt: Coverage Status
 
-.. image:: https://img.shields.io/lgtm/alerts/g/ssato/python-anyconfig-fortios-backend.svg
-   :target: https://lgtm.com/projects/g/ssato/python-anyconfig-fortios-backend/alerts/
-   :alt: [Total Alerts by LGTM]
-
-.. image:: https://img.shields.io/lgtm/grade/python/g/ssato/python-anyconfig-fortios-backend.svg
-   :target: https://lgtm.com/projects/g/ssato/python-anyconfig-fortios-backend/context:python
-   :alt: [Code Quality by LGTM]
-
 This is a backend module for python-anyconfig to support to load and parse
 fortios' "show \*configuration" outputs.
 
